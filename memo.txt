@@ -1,0 +1,69 @@
+//////////////// History ///////////////
+
+- Updated on May 20 2018, this folder is copied from ~/nodejs/transactions/48_apr4/ . 
+
+
+
+////////////////////////////////////////
+
+Examples
+How to run gencsr :
+
+$ nodemon gencsr.js -a EC -p hello hirose
+
+
+$ nodemon --ignore db/ bserver.js
+
+
+Architecture
+
+1. Web server to put transactions from browsers to mining server, and to return account lists to user or show to history of transactions.  Use socket io - browser <--> Web server, use Redis - Web server <--> mining server
+
+2. Mining server to collect transactions and mine them, or to pick up account lists, to return history of transactions, or to send transactions to other server as p2p.  Use socket io - mining server <--> Dummy server, use Redis - Web server <--> mining server.
+
+3. Dummy server to receive transactions as p2p.  Use socket io - mining server <--> Dummy server.
+
+
+//////////// Web Screen /////////////
+
+Consists of three menu:
+Account :  show account list and balances of each of account.
+Transaction : Register a transaction of fromAccount to toAccount with amount, currency, valuedate, beneficiary, order_cust, remarks.
+History : show all transactions associated with particular accounts.
+
+    command :  nodemon --ignore ./db web_s.js
+
+//////////// Mining server /////////////
+
+1. To start collecting transactions and then start mining, and send trans to p2p,  every 30 seconds.
+
+
+  command of nodemon : nodemon --ignore ./db   mining_s.j
+  or
+  forever command to start :  forever start mining_s.js
+  forever command to stop :  forever stop mining_s.js
+
+
+
+      sample : forever start -l forever.log -o out.log -e err.log my-daemon.js
+               forever stop my-daemon.js
+
+2. To stop mining server, just put command below:
+
+    node stop_mining.js
+
+//////////// Dummy server /////////////
+
+    Dummy server is under construction.
+1. To receive transactions and save to files.
+
+//////////// files and directories ////////
+
+-- views  rendering files
+-- routes  express routing files
+-- public  public folder for express
+-- ssl    files of keys  -- we do not use them this time.
+
+web_s.js  --  web server using express.
+mining_s.js  -- mining server
+dummy_s.js  --  dummy server
