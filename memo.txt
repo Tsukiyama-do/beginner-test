@@ -1,6 +1,6 @@
 //////////////// History ///////////////
 
-- Updated on May 20 2018, this folder is copied from ~/nodejs/transactions/48_apr4/ . 
+- Updated on May 20 2018, this folder is copied from ~/nodejs/transactions/48_apr4/ .
 - registered to git on May 27 2018
 
 
@@ -38,7 +38,7 @@ History : show all transactions associated with particular accounts.
 1. To start collecting transactions and then start mining, and send trans to p2p,  every 30 seconds.
 
 
-  command of nodemon : nodemon --ignore ./db   mining_s.j
+  command of nodemon : nodemon --ignore ./db   mining_s.js
   or
   forever command to start :  forever start mining_s.js
   forever command to stop :  forever stop mining_s.js
